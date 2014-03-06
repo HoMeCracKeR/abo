@@ -4,7 +4,8 @@
 #include <QDialog>
 #include <QLineEdit>
 #include <QPushButton>
-
+#include <QThread>
+#include "sqllogin.h"
 namespace Ui {
 class Dialog;
 }
@@ -29,7 +30,9 @@ private:
     QLineEdit *usernameEdit,*passwordEdit;
     QPushButton *loginButton,*cancelButton;
     void InitComponents();
-
+    void run();
+    QThread loginThread;
+    QString username,password;
 };
 
 #endif // DIALOG_H

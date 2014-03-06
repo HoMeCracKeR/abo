@@ -14,10 +14,13 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         abo.cpp \
-    dialog.cpp
+    dialog.cpp \
+    sqllogin.cpp
 
 HEADERS  += abo.h \
-    dialog.h
+    dialog.h \
+    sqllogin.h \
+    exceptions.h
 
 FORMS    += abo.ui \
     dialog.ui

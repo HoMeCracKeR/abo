@@ -44,6 +44,7 @@ void Abo::LoginToDatabase()
     dialog->show();
     isLoggedIn=dialog->getLogSuccess();
 
+
     }
     else
     {

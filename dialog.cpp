@@ -17,6 +17,10 @@ void Dialog::InitComponents()
 
     passwordEdit->setEchoMode(QLineEdit::Password);
     passwordEdit->setInputMethodHints(Qt::ImhHiddenText| Qt::ImhNoPredictiveText|Qt::ImhNoAutoUppercase);
+
+    username=usernameEdit->text();
+    password=passwordEdit->text();
+
 }
 
 Dialog::~Dialog()
@@ -31,6 +35,11 @@ Dialog::~Dialog()
 void Dialog::on_loginButton_clicked()
 {
 
+    loginThread.start();
+    if(logSuccess==true)
+        ui->controlLabel->setText("true");
+    else
+        ui->controlLabel->setText("true");
 }
 
 void Dialog::on_cancelButton_clicked()
@@ -40,4 +49,14 @@ void Dialog::on_cancelButton_clicked()
 bool Dialog::getLogSuccess()
 {
     return logSuccess;
+}
+void Dialog::run()
+{
+    if(!username.isEmpty() || !password.isEmpty())
+    {
+        SqlLogin login=SqlLogin(username,password);
+        login.ExecuteQuery();
+        logSuccess=login.GetLoginSucces();
+        loginThread.disconnect();
+    }
 }
